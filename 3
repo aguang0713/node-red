@@ -1,0 +1,88 @@
+[
+    {
+        "id": "f4cda86a.23e8e8",
+        "type": "tab",
+        "label": "Flow 3",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "b64082cb.041a9",
+        "type": "inject",
+        "z": "f4cda86a.23e8e8",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 130,
+        "y": 120,
+        "wires": [
+            [
+                "248f1d89.63c1a2"
+            ]
+        ]
+    },
+    {
+        "id": "248f1d89.63c1a2",
+        "type": "function",
+        "z": "f4cda86a.23e8e8",
+        "name": "payload",
+        "func": "msg.headers={\n    deviceKey: \"T63AuKyiWIkLua0u\"\n    };\n    \nmsg.payload= \"Temperature,,25.3\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 350,
+        "y": 120,
+        "wires": [
+            [
+                "df3a877c.ca8078"
+            ]
+        ]
+    },
+    {
+        "id": "df3a877c.ca8078",
+        "type": "http request",
+        "z": "f4cda86a.23e8e8",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "url": "https://api.mediatek.com/mcs/v2/devices/DqAHkwXD/datapoints.csv",
+        "tls": "",
+        "x": 560,
+        "y": 120,
+        "wires": [
+            [
+                "8ce01046.66b7c",
+                "ac36cca1.bb843"
+            ]
+        ]
+    },
+    {
+        "id": "8ce01046.66b7c",
+        "type": "http response",
+        "z": "f4cda86a.23e8e8",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 680,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "ac36cca1.bb843",
+        "type": "debug",
+        "z": "f4cda86a.23e8e8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 680,
+        "y": 340,
+        "wires": []
+    }
+]
